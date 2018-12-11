@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>EXPORTAR DADOS</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/exportarDados.js"></script>
+</head>
+<body>
+	<h1>EXPORTAR DADOS</h1>
+
+	<div id="box">
+		<form id="exportarDados">
+			<input type="button" name="botaoExportar" class="horizontal" onclick="visualizarDados()" value="VISUALIZAR TODOS OS DADOS">
+			<input type="button" id="exportarDados" class="center" value=" EXPORTAR PARA... " onclick="criaArquivo()"></br></br>
+			<!--<input type="button" id="exportarDadosArquivoUnico" class="center" value="CRIAR ARQUIVO ÚNICO..." onclick="criaArquivoUnico()"></br></br>-->
+			<input type="button" id ="botao-voltar" class="horizontal" onclick="window.history.back(-1);" value="VOLTAR" />
+		</form>
+		<br><br>
+		<div id="tabela" class="center">
+		</div>
+	</div>
+
+</body>
+</html>

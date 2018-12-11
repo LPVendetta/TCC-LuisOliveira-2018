@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="UTF-8">
+	<title>SISMAP</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/mysql.js"></script>
+	<script type="text/javascript" src="scripts/importacaoCSV.js"></script>
+  
+  </head>
+  <body>
+    <h1>SISMAP</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!--We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.-->
+    
+    <div id="box">
+    	<form id="menu-funcao">
+    		<input type="button" onclick="location.href='importar_dados.html';" value="IMPORTAÇÃO DE DADOS" />
+    		<br>
+    		<br>
+    		<input type="button" onclick="location.href='cadastrar.html';" value="INSERÇÃO DE DADOS" />
+    		<br>
+    		<br>
+            <input type="button" onclick="location.href='exportar-dados.html';" value="EXPORTAR DADOS" />
+            <br>
+            <br>
+            <input type="button" onclick="location.href='index.html';" value="SAIR" />
+            <br>
+            <br>
+    	</form>
+    </div>
+    
+    </br>
+    </br>
+  </body>
+  
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="UTF-8">
+	<title>SISMAP</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/login.js"></script>
+  
+  </head>
+  <body>
+    <h1>SISMAP</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!--We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.-->
+    
+    <div id="box">
+    	<form id="cadastrarUsuario" style="width:1000px; align-content: center; text-align: right;">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" name="nome" id="nome">
+            <br>
+            <label for="usrname">Nome de Usuário:</label>
+            <input type="text" name="usrname" id="usrname">
+            <br>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha">
+            <br>
+            <label for="tipousuario">Tipo de Usuário:</label>
+            <select id="tipousuario">
+                <option value="0">ADMINISTRADOR</option>
+                <option value="2">USUÁRIO</option>
+            </select>
+            <br>
+            <input type="button" name="cadastrarUsuario" id="cadastrarUsuario" value="CADASTRAR" onclick="novoCadastro(this.form)">
+            <br>
+            <input type="button" id ="botao-voltar" class="horizontal" onclick="window.history.back(-1);" value="VOLTAR" />
+            <br><br>
+    	</form>
+    </div>
+    
+    </br>
+    </br>
+  </body>
+  
+</html>

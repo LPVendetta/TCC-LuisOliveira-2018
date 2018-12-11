@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="UTF-8">
+	<title>SISMAP</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/login.js"></script>
+	
+  
+  </head>
+  <body>
+    <h1>SISMAP</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!--We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.-->
+    
+    <div id="box">
+    	<form id="menu-login" style="width:1000px; align-content: center; text-align: right;">
+    		<label for="usrname">Nome de USuário:</label>
+    		<input type="text" name="usrname" id="usrname" required>
+    		<br>
+    		<label for="senha">Senha:</label>
+    		<input type="password" name="senha" id="senha" required>
+    		<br>
+    		<input type="button" name="login" value="ENVIAR" onclick="checaUsrSenha(this.form)">
+    	</form>
+    </div>
+    
+    </br>
+    </br>
+  </body>
+  
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="UTF-8">
+	<title>SISMAP</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/mysql.js"></script>
+    <script language="javascript" src="scripts/funcoesrelatorio.js"></script>
+    <script language="javascript" src="scripts/funcoesquestionario.js"></script>
+    
+  
+  </head>
+  <body>
+    <h1>SISMAP</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!--We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.-->
+    
+    <div id="box">
+    	<div id="conteiner">
+            <h3> Selecione a Unidade</h3>
+            <br><br>
+                <select class='campo' name = 'unidade' id = 'unidade' onclick='populaUnidade(this)' required/></select><br/>
+            <div id="relatoriosexo">
+                
+                <h2>DISTRIBUIÇÃO DE FUNCIONÁRIOS POR SEXO</h2>
+                <input type="button" name="geraRelatorios" value = "Gerar Relatórios" onclick="geraRelatorios('rSexo')">
+                    <div id='rSexo' class='boxRelatorio'>
+                    </div>
+            </div>
+            <br>
+            <div id="relatoriodeficiencia">
+            
+                <h2>DISTRIBUIÇÃO DE FUNCIONÁRIOS COM NECESSIDADES ESPECIAIS</h2>
+                <input type="button" name="geraRelatorios" value = "Gerar Relatórios" onclick="geraRelatorios('rDeficiencia')">
+                    <div id='rDeficiencia' class='boxRelatorio'>
+                    </div>
+
+            </div>
+            <br>
+            <div id="relatoriovinculo">
+                <h2>DISTRIBUIÇÃO DE FUNCIONÁRIOS POR TIPO DE VÍNCULO</h2>
+                <input type="button" name="geraRelatorios" value = "Gerar Relatórios" onclick="geraRelatorios('rVinculo')">
+                    <div id='rVinculo' class='boxRelatorio'>
+                    </div>
+            </div>
+            <br>
+            <div id="relatoriofaixaetaria">
+            	<h2>DISTRIBUIÇÃO DE FUNCIONÁRIOS POR FAIXA ETÁRIA</h2>
+                <input type="button" name="geraRelatorios" value = "Gerar Relatórios" onclick="geraRelatorios('rFaixaEtaria')">
+                    <div id='rFaixaEtaria' class='boxRelatorio'>
+                    </div>
+            </div>
+            <br>
+            <input type="button" id ="botao-voltar" class="horizontal" onclick="window.history.back(-1);" value="VOLTAR" />
+            <br><br>
+        </div>
+    </div>
+    
+    </br>
+    </br>
+  </body>
+  
+</html>

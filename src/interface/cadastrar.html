@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta charset="UTF-8">
+	<title>QUESTIONÁRIO</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script language="javascript" src="scripts/funcoesquestionario.js"></script>
+	<script language="javascript" src="scripts/insercao.js"></script>
+	<script type="text/javascript">
+		var slideIndex=0;
+		var slides=[];
+
+		function getSlides() {
+			// recupera quantos divs de id="slide"
+			slides = document.getElementsByClassName("slide");
+			show(slideIndex);
+		}
+		function slideAtual(n) {
+			// Seta qual é o index do slide atual
+			slideIndex=n;
+		}
+		function proximo() {
+			//deixa todos os slides invisíveis exceto o próximo.
+			hide(slideIndex);
+			show(slideIndex+1);
+			slideAtual(slideIndex+1);
+		}
+
+		function anterior() {
+			// deixa todos os slides invisíveis exceto o anterior.
+			hide(slideIndex);
+			show(slideIndex-1);
+			slideAtual(slideIndex-1);
+		}
+
+		function show(n){
+			//exibe o slide n usando o vetor de slides como guia
+			slides[n].style.display="block";
+			var prev = document.getElementById("ant");
+			var next = document.getElementById("prox");
+			if(n>0){
+				prev.disabled=false;
+			}
+			else{
+				prev.disabled=true;
+			}
+			if(n==slides.length-1){
+				next.disabled=true;
+			}
+			else{
+				next.disabled=false;
+			}
+
+		}
+		function hide(n) {
+			// oculta o slide que perdeu o foco
+			slides[n].style.display="none";
+			var prev = document.getElementById("ant");
+			var next = document.getElementById("prox");
+			if(n>0){
+				prev.disabled=false;
+			}
+			else{
+				prev.disabled=true;
+			}
+			if(n==slides.length-1){
+				next.disabled=true;
+			}
+			else{
+				next.disabled=false;
+			}
+		}
+
+		function teste(form) {
+			alert(form.id);
+		}
+	</script>
+</head>
+<body onload="getSlides()">
+	<h1>QUESTIONÁRIO</h1>
+	<div id="conteiner">
+		<input type="button" id="ant" value="ANTERIOR" onclick="anterior()" disabled>
+		<input type="button" id="prox" value="PRÓXIMO" onclick="proximo()">
+		<input type="button" id ="botao-voltar" class="horizontal" onclick="window.history.back(-1);" value="VOLTAR" />
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="controle">
+				<form id="controle">
+			    	<fieldset>
+			    		<legend>PRÓ-REITORIA DE ASSUNTOS ADMINISTRATIVOS<br/> 
+					    MAPEAMENTO DO CAPITAL HUMANO DA UFRRJ<br/></legend>
+					    
+					    n.1. Nº DE IDENTIFICAÇÃO:<input type ="text" class="campo" id = "n1" required /><br/>
+					    n.2.UNIDADE ORGANIZACIONAL: <select class='campo' name = 'UnidadeOrg' id = 'n2' onclick='populaUnidade(this)' required/></select><br/>
+					    n.3.UNIDADE INTERMEDIÁRIA: <select class='campo' name = 'UnidadeInt' id = 'n3' onclick='populaUnidade(this)' required/></select><br/>
+					    n.4.UNIDADE DE TRABALHO:  <select class='campo' name = 'UnidadeTrab' id = 'n4' onclick='populaUnidade(this)' required/></select><br/>
+
+					    <h3>APENAS PARA USO DA EQUIPE </h3><br/><br/>
+
+					    ENTREVISTADOR<br/> 
+						n.7.Nome <input type ="text" class="campo" id = "n7" required/>
+						n.8.Data<input type ="text" class="campo" id = "n8" required/><br/><br/>
+						
+					    RESPONSÁVEL PELO RECEBIMENTO<br/> 
+						n.9.Nome <input type ="text" class="campo" id = "n9"/>
+						n.10.Data <input type ="text" class="campo" id = "n10"/><br/><br/>	
+						
+						
+					    CONTROLE E AVALIAÇÃO DE QUESTIONÁRIOS <br/> 
+						n.11.Nome <input type ="text" class="campo" id = "n11"/>
+						n.12.Data <input type ="text" class="campo" id = "n12"/><br/><br/>
+						
+					    CRÍTICA DO QUESTIONÁRIO <br/> 
+						n.13.Nome<input type ="text" class="campo" id = "n13" required/>
+						n.14.Data<input type ="text" class="campo" id = "n14" required/><br/><br/>
+						
+						DIGITAÇÃO<br/> 
+						n.15.Nome<input type ="text" class="campo" id = "n15" required/>
+						n.16.Data<input type ="text" class="campo" id = "n16" required/><br/><br/>
+						
+						COORDENAÇÃO LOCAL<br/> 
+						n.17.Nome<input type ="text" class="campo" id = "n17"/>
+						n.18.Data <input type ="text" class="campo" id = "n18"/><br/><br/>
+						
+					    COORDENAÇÃO GERAL<br/> 
+						n.19.Nome <input type ="text" class="campo" id = "n19"/>
+						n.20.Data <input type ="text" class="campo" id = "n20"/>			
+						<br/><br/>
+
+						n.5.Horario de Inicío da entrevista ( horas : minutos)
+						<input type ="text" class="campo" id = "n5" required/>
+						<br/>
+						<!--<input type="button" id="salvar" value="SALVAR" onclick="preencheObjs(form)">-->
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(form)">
+
+						<br/><br/>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoA">
+				<form id="blocoA">
+				<fieldset>
+					<legend>A. IDENTIFICAÇÃO DO SERVIDOR</legend>
+
+					    1.Nome do Servidor : <input type ="text" class="campo" id = "a1" required/> <br/><br/>
+
+					    2.Data de Nascimento <input type ="text" class="campo" id = "a2" required/> <br/><br/>
+						
+						3.Sexo:<br/>
+						  <select id="a3" class="campo" required>
+							<option value ="1">Masculino</option>
+							<option value ="2">Feminino</option>
+							<option value ="3">Outros</option>  
+						  </select><br/><br/>
+
+						4.Apresenta algum tipo de deficiência física ?<br/>
+						  <select id="a4" class="campo" required>
+							<option value ="1">Sim</option>
+							<option value ="2">Não</option> 
+				     	   </select><br/><br/>
+					
+						5. Tipo de Servidor: <br/>
+						  <select id="a5" class="campo" required>
+							<option value ="1">Terceirizado </option>
+							<option value ="2">Estagiário</option>
+							<option value ="3">Anistiado</option> 
+							<option value ="4">Servidor Técnico Admnistrativo</option>
+							<option value ="5">Docente Ensino Superior</option>
+							<option value ="6">Docente Ensino Técnico</option>
+							<option value ="7">Cedido</option>
+							<option value ="8">Bolsista</option> 
+							</select><br/><br/>
+
+						6.Matricula: (0 = Não Tem) <input type ="text" class="campo" id = "a6" required/><br/><br/>
+						 
+					    7.Lotação: <label> <select class='campo' name = 'Lotacao' id = 'a7' onclick='populaUnidade(this)' required/></select><br/><br/></label>
+					               
+					    8.Tempo de serviço fora do serviço publico Federal (averbado - em anos): (0 = Não Tem) 
+					    <input type ="text" class="campo" id = "a8" required/> <br/><br/>            
+					               
+					    9.Este tempo de serviço foi cadastrado no DP:(averbado)? 
+						 <select id="a9" class="campo" required>
+							<option value ="1">Sim</option>
+							<option value ="2">Não</option> 
+						 </select><br/><br/>                                            
+
+						10.  Ano Admissão no Serviço Público: <input type ="text" class="campo" id ="a10" required/> <br/><br/> 
+
+						11.  Ano Admissão na UFRRJ :<input type ="text" class="campo" id = "a11" required/><br/><br/>
+
+						12. Cargo :<select class='campo' name = 'Cargo' id = 'a12' onclick='populaCargo(this)' required/></select><br/><br/>
+
+						13.  Desde (ano):<input type ="text" class="campo" id = "a13" required/><br/><br/>
+
+						14. Exerce função de Chefia:<br/>
+						<select id="a14" class="campo" onchange="questao14()" required>
+							<option value ="0">Responda</option>
+							<option value ="1">Sim</option>
+							<option value ="2">Não</option> 
+						</select><br/><br/>
+
+						<div id="chefia" class="oculto">
+							15. Qual:<input type ="text" class="campo" id = "a15"/> <br/><br/>
+
+							16. Desde (ano):<input type ="text" class="campo" id = "a16"/><br/><br/>
+						</div>
+
+						TIPO DE SERVIÇO<br>
+						<select id="tiposervico" onchange="servico()" required>
+							<option value="0">Escolha...</option>
+							<option value="1">Técnico-Administrativo</option>
+							<option value="2">Docente</option>
+							<option value="3">Docente Técnico</option>
+						</select>
+						<br><br>
+						<div id="tecadm" class="oculto">
+						
+						17. Classe Técnico-Administrativo:<br/>
+							<select id="a17" class="campo">
+								<option value ="88">NA</option>
+								<option value ="1">1A</option>
+								<option value ="2">2B</option>
+								<option value ="3">3C</option>
+								<option value ="4">4D</option>
+								<option value ="5">5E</option>
+								<option value ="77">77-NS</option>
+							</select><br/><br/>
+							
+							18. Nível na carreira - Técnico-Adminstrativo:<input type ="text" class="campo" id = "a18"/><br/><br/>
+
+							19. Nível de Capacitação:<input type ="text" class="campo" id = "a19" onchange="questao19()"/><br/><br/>
+						</div>
+						<div id="docente" class="oculto">
+							Docente Ensino Superior<br/><br/>
+
+							20. Classe: <br/>
+							<select id="a20" class="campo">
+								<option value ="88">NA</option>
+								<option value ="4">4 Auxiliar</option>
+								<option value ="5">5 Assistente</option>
+								<option value ="6">6 Adjunto</option>
+								<option value ="7">7 Associado</option>
+								<option value ="8">8 Titular</option>
+							</select><br/><br/>
+							
+							21. Nível na carreira Docente:<input type ="text" class="campo" id = "a21" onchange="questao21()" /><br/><br/>
+						</div>
+						<div id="docente-tec" class="oculto">
+							Docente Ensino Médio<br/><br/>
+
+							22.Classe Docente Ensino Técnico<br/>
+							<select id="a22" class="campo">
+								<option value ="88">NA</option>
+								<option value ="1">1 DI</option>
+								<option value ="2">2 DII</option>
+								<option value ="3">3 DIII</option>
+								<option value ="4">4 DIV</option>
+								<option value ="5">5 Titular</option>
+							</select><br/><br/>
+
+							23. Nível na carreira Docente Ensino Técnico:<input type ="text" class="campo" id = "a23"/><br/><br/>
+						</div>
+
+						24. Horário de Trabalho:<br/>
+						<select id="a24" class="campo" required>
+							<option value ="1">1 Integral</option>
+							<option value ="2">2 Plantão</option>
+							<option value ="3">3 Escala</option>
+							<option value ="4">4  Turno</option>
+						</select>
+						<br/><br/>
+						25. Quantos dias na semana:<input type ="text" class="campo" id = "a25" required/><br/><br/>
+
+						26. Carga Horária Semanal:<input type ="text" class="campo" id = "a26" required/><br/><br/>
+
+						27.  Descreva o horário:<input type ="text" class="campo" id = "a27" required/>
+						<br/><br/><br/><br/>
+						 
+						28. Telefone do Setor (unidade):<input type ="text" class="campo" id = "a28" required/><br/><br/>
+
+						29. Telefone Celular: <input type ="text" class="campo" id = "a29" required/> <br/><br/>
+
+						30. E-Mail 1:<input type ="text" class="campo" id = "a30" required/><br/><br/>
+
+						31. E-Mail 2:<input type ="text" class="campo" id = "a31" required/><br/><br/>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoB">
+				<form id="blocoB">
+					<fieldset>
+						<legend>B. NIVEL DE QUALIFICAÇÃO DO SERVIDOR</legend>
+						 
+						Define-se Qualificação como: A educação formal incluindo a que for superior à exigida para o cargo de que é titular ( Lei N° 11.091 de 12/01/2005).<br/><br/>
+
+						1. Você sabe ler e escrever:<br/>
+						<select id="b1" class="campo" required>
+							<option value ="1">Sim</option>
+							<option value ="2">Não</option> 
+						</select><br/><br/>
+
+						2. Atualmente, você está cursando alguma série da educação<br/>
+						formal (educação básica ou curso da educação superior ):<br/>
+						<select id="b2" class="campo" required>
+							<option value ="1">Sim</option>
+							<option value ="2">Não</option> 
+						</select><br/><br/>
+
+						ESCOLARIDADE: <br><br>
+
+						3. Qual foi a última série que você concluiu com aprovação:<br/>
+						<select id="b3" class="campo" onchange="escolaridade()" required>
+							<option value ="null">Escolha...</option>
+							<option value ="0">0 Nunca estudou / alfabetizado</option>
+							<option value ="1">1 Primeira série do Ensino Fundamental (Primário)</option>
+							<option value ="2">2 Segunda série do Ensino Fundamental</option>
+							<option value ="3">3 Terceira série do Ensino Fundamental</option>
+							<option value ="4">4 Quarta série do Ensino Fundamental</option>
+							<option value ="5">5 Quinta série do Ensino Fundamental (1º Grau/Ginásio)</option>
+							<option value ="6">6 Sexta série do Ensino Fundamental</option>
+							<option value ="7">7 Sétima série do Ensino Fundamental</option>
+							<option value ="8">8 Oitava série do Ensino Fundamental</option>
+							<option value ="9">9 Nona série do Ensino Fundamental</option>
+							<option value ="10">10 Primeiro ano do Ensino Médio (2° Grau)</option>
+							<option value ="11">11 Segundo ano do Ensino Médio</option>
+							<option value ="12">12 Terceiro ano do Ensino Médio</option>
+							<option value ="13">13 Quarto ano do Ensino Médio</option>
+							<option value ="14">14 Graduação</option>
+							<option value ="15">15 Especialização</option>
+							<option value ="16">16 Mestrado</option>
+							<option value ="17">17 Doutorado</option>
+							<option value ="18">18 Pós-Doutorado</option>
+							<option value ="77">77 NS</option>
+						</select>
+						<br><br><br>
+						
+						<div id="anoconclusao" class="oculto">
+							4. Ano de Conclusão:<input type ="text" class="campo" id = "b4" required/><br/>
+							77 NS<br/><br/>
+						</div>
+						<br><br>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+				<!-- Graduação-->
+				<div id="graduacao" class="oculto">
+					<fieldset>
+						GRADUAÇÃO
+						 <div id="conteudoGrad">
+						 </div>
+						 <input type="button" id="addGrad" value="Adicionar Graduação" onclick="addNovaDiv(this.id)">
+					 </fieldset> 		
+				</div>
+				<!--Especialização-->
+				<div id="especializacao" class="oculto">
+					<fieldset>
+						ESPECIALIZAÇÃO
+						<div id="conteudoEspec">
+						</div>
+						<input type="button" id="addEspec" value="Adicionar Especialização" onclick="addNovaDiv(this.id)">
+					</fieldset>
+				</div>
+				<!-- Mestrado-->
+				<div id="mestrado" class="oculto">
+					<fieldset>
+						MESTRADO
+						<div id="conteudoMestr">
+						</div>
+						<input type="button" id="addMestr" value="Adicionar Mestrado" onclick="addNovaDiv(this.id)">
+					</fieldset>	
+				</div>
+				<!--Doutorado-->
+				<div id="doutorado" class="oculto">
+					<fieldset>
+						DOUTORADO
+						<div id="conteudoDoc">
+						</div>
+						<input type="button" id="addDoc" value="Adicionar Doutorado" onclick="addNovaDiv(this.id)">
+					</fieldset>	
+				</div>
+				<!--Pós-doutorado-->
+				<div id="posdoc" class="oculto">
+					<fieldset>
+						PÓS-DOUTORADO
+						<div id="conteudoPosdoc">
+						</div>
+						<input type="button" id="addPosdoc" value="Adicionar Pós-doutorado" onclick="addNovaDiv(this.id)">
+					</fieldset>	
+				</div>
+
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoC">
+				
+					<fieldset>
+						<legend>C. CAPACITAÇÕES REALIZADAS PELO SERVIDOR (A PARTIR DE 2005)</legend>
+						
+						<p>Consideram-se eventos de capacitação:  os cursos presenciais e à distância, aprendizagem em serviço, grupos formais de<br/>
+						estudos, intercâmbios, estágios, seminários e congressos, que contribuam para o desenvolvimento do servidor e que atendam<br/>
+						aos interesses da administração pública federal direta, autárquica e fundacional  (Decreto Nº 5.707 de 23/02/26).<br/><br/></p>
+						<div id="conteudoCapac">
+						</div>
+						<input type="button" id="addCapac" value="Adicionar Capacitação" onclick="addNovaCapac()">
+					</fieldset>
+				
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoD">
+				
+					<fieldset>
+						<legend>D.  QUAL(IS) OUTRA(S) ATIVIDADES SE CONSIDERA CAPAZ DE FAZER NA SUA PRÓPRIA UNIDADE OU  EM OUTRA? INDIQUE CADA UMA</legend>
+							<div id="conteudoOutraAtiv">
+							</div>
+							<input type="button" id="addOutraAtiv" value="Adicionar Outra Atividade" onclick="addOutraAtiv()">
+					</fieldset>
+				
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoE">
+				<form id="blocoE">
+					<fieldset>
+						<legend>E.  PLANEJAMENTO </legend>
+						<p>Planejar significa examinar o futuro e traçar um plano de ação para curto, médio e longo prazos. <br/><br/> </p>
+
+						1. Você conhece o planejamento do/da (Unnameade de Trabalho)?<br/>
+						<select name="e1" id="13" class="campo" required>
+							<option value="0">0 NÃO</option>
+							<option value="1">1 SIM - POUCO</option>
+							<option value="2">2 SIM - MUITO</option>
+						</select><br><br>
+
+						2. Sua Unidade Organizacional consegue alcançar os <br/>
+						objetivos definnameos através do planejamento?<br/>
+						<select name="e2"  id="14" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						3. Você tem conhecimento do planejamento das<br/>
+						Unnameades de trabalho ligadas a sua unnameade<br/>
+						organizacional?<br/>
+						<select name="e3" id="15"  class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						4. Você é chamado para contribuir com o planejamento <br/>
+						de sua Unnameade de Trabalho?<br/>
+						<select name="e4"  id="16" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						5. Os métodos utilizados por sua Unnameade de Trabalho<br/>
+						são eficientes para alcançar os objetivos de sua unnameade<br/>
+						organizacional?<br/>
+						<select name="e5"  id="17" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						6. Você participa das decisões relacionadas com suas<br/>
+						tarefas?<br/>
+						<select name="e6"  id="18" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoF">
+				<form id="blocoF">
+					<fieldset>
+						<legend>F.  ORGANIZAÇAO</legend>
+						Organizar  significa montar uma estrutura humana e material para realizar o planejado.
+						<br/><br/>
+
+						1.  Você considera a estrutura organizacional da UFRRJ<br/>
+						ágil para desenvolver as atividades de sua Unidade de<br/>
+						<select name="f1" id="19" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						2.  A Unidade de Trabalho participa de discussões em<br/>
+						prol de melhorias da UFRRJ? (Ex. Fórum sobre<br/>
+						Avaliação de Desempenho, Programa de Capacitação,<br/>
+						Reforma do Estatuto)<br/>
+						<select name="f2" id="20" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						3.  As condições físicas da sua Unidade de trabalho são<br/>
+						adequadas para a realização das atividades que você<br/>
+						desempenha?<br/>
+						<select name="f3" id="21" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						4. Você consegue concluir as atividades propostas para<br/>
+						cada dia?<br/>
+						<select name="f4" id="22" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						5. A quantidade de servidores lotados na sua unidade de<br/>
+						trabalho é suficiente para a realização das tarefas?<br/>
+						<select name="f5" id="23" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						6 Quantas pessoas a mais são necessárias? <input type ="text" class="campo" name = "f6" id="24" required/> (77NS) <br/><br/>
+
+						7. Sua Unidade de Trabalho possui as atividades dos<br/>
+						servidores definidas?<br/>
+						<select name="f7" id="25" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						8. A chefia comunica as atividades direcionadas a você?<br/>
+						<select name="f8" id="26" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						9. Você conhece quais responsabilidades implicam suas<br/>
+						atividades?<br/>
+						<select name="f9" id="27" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						10. Seus superiores cobram estas responsabilidades?<br/>
+						<select name="f10" id="28" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						11. Os canais e meios de comunicação são utilizados em<br/>
+						sua Unidade Organizacional?<br/>
+						<select name="f11" id="29" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						12. As comunicações formais de sua Unidade de<br/>
+						Trabalho atendem aos padrões da UFRRJ ?<br/>
+						<select name="f12" id="30" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						13. A comunicação entre seus superiores e você é<br/>
+						eficiente?<br/>
+						<select name="f13" id="31" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						14. A comunicação entre você e seus superiores é<br/>
+						eficiente?<br/>
+						<select name="f14" id="32" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+
+						15. A comunicação entre você e seus colegas de trabalho<br/>
+						é eficiente?<br/>
+						<select name="f15" id="33" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoG">
+				<form id="blocoG">
+					<fieldset>
+						<legend>G.  COORDENAÇÃO</legend>
+						Coordenar  significa reunir, unificar, harmonizar, dirigir toda a atividade e esforço necessários.<br/><br/>
+
+						1.  Existe uma prática de coordenação das atividades da<br/>
+						sua Unidade de Trabalho?<br/>
+						<select name="g1" id="34" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						2.  A chefia orienta você quanto à realização do<br/>
+						trabalho?<br/>
+						<select name="g2" id="35" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+						
+						3. Como?<br/>
+						<textarea rows="5" cols="50" class="campo" name="g3" id="36" required></textarea> <br/><br/>
+
+						
+						4. Os servidores nas Unidades de Trabalho agem com<br/>
+						“espírito de equipe”?<br/>
+						<select name="g4" id="37" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						5. Você entende as atividades repassadas a você pelos<br/>
+						seus superiores?<br/>
+						<select name="g5" id="38" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						6. Você aceita a coordenação das atividades direcionadas<br/>
+						a você?<br/>
+						<select name="g6" id="39" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						7.  As decisões finais do gestor de sua unidade de<br/>
+						trabalho são eficientes?<br/>
+						<select name="g7" id="40" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						8. Você saberia desenvolver as atividades<br/>
+						desempenhadas por seus colegas de trabalho?<br/>
+						<select name="g8" id="41" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						9. No/Na Unidade de Trabalho as pessoas fazem tarefas<br/>
+						diferentes<br/>
+						<select name="g9" id="42" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						10.  Há cooperação entre você e seus colegas de<br/>
+						trabalho?<br/>
+						<select name="g10" id="43" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						11. Com que freqüência acontecem conflitos em sua<br/>
+						Unidade de Trabalho?<br/>
+						<select name="g11" id="44" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						12. Seu trabalho é reconhecido pelos seus superiores?<br/>
+						<select name="g12" id="45" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						13. Você trabalha satisfeito em seu ambiente de<br/>
+						trabalho?<br/>
+						<select name="g13" id="46" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						14. Você está satisfeito com as atividades que<br/>
+						desempenha?<br/>
+						<select name="g14" id="47" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoH">
+				<form id="blocoH">
+					<fieldset>
+						<legend>H.  CONTROLE</legend>
+						Controlar  significa acompanhar e avaliar a realização de acordo com os planos e metas.<br/><br/>
+
+						1. Em sua Unidade de Trabalho se utilizam instrumentos e<br/>
+						indicadores de controle?<br/>
+						<select name="h1" id="48" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						2. Os instrumentos e indicadores de controle das suas<br/>
+						atividades são explicados a você?<br/>
+						<select name="h2" id="49" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+
+						3. Os instrumentos de controle utilizados pela Unidade de<br/>
+						Trabalho são adequados para alcançar os objetivos<br/>
+						estabelecidos?<br/>
+						<select name="h3" id="50" class="campo" required>
+							<option value="0">Nunca 0</option>
+							<option value="1">Quase Nunca 1 </option>
+							<option value="2">Às Vezes 2</option>
+							<option value="3">Quase Sempre 3</option>
+							<option value="4">Sempre 4</option>
+							<option value="77">NS 77</option>
+						</select><br><br>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoI">
+				<form id="blocoI">
+					<fieldset>
+						<legend>I.  ATIVIDADE</legend>
+						1.  Nome da Atividade:<br/>
+						<textarea rows="1" cols="50" class="campo" id="i1" required></textarea> <br/><br/>
+
+						2. Descrição da Atividade :<br/>
+						<textarea rows="5" cols="50" class="campo" id="i2" required></textarea> <br/><br/>
+
+						3. Público Alvo:<br/>
+						<select id="i3" class="campo" required>
+							<option value="0">Interno (Unidade de Trabalho)</option>
+							<option value="1">Externo (Fora da Unidade de trabalho) </option>
+							<option value="2">Interno/externo</option>
+						</select><br><br>
+
+						4. Quem é o Público Alvo?<br/>
+						<textarea rows="1" cols="50" class="campo" id="i4" required></textarea> <br/>77 NS<br/><br/>
+
+						5. Para realização desta atividade, você utiliza informações de que setor (unidade, pessoa, etc.)?<br/>
+						<textarea rows="2" cols="50" class="campo" id="i5" required></textarea> <br/><br/>
+
+						6. Para realização desta atividade, você necessita de material de que setor (unidade, pessoa, etc.)?<br/>
+						<textarea rows="2" cols="50" class="campo" id="i6" required></textarea> <br/><br/>
+
+						Conhecimento:  02Relaciona-se à compreensão de conceitos e técnicas. O que precisam saber para desempenhar a<br/>
+						atividade. Saber o que e por que fazer.<br/><br/>
+
+						7. Que conhecimentos são necessários para realização desta atividade?<br/>
+						<textarea rows="1" cols="50" class="campo" id="i7" required></textarea> <br/><br/>
+
+						Habilidade:  Representa aptidão e capacidade de realizar e estão associadas à experiência e ao aprimoramento progressivo.
+						<br/>
+						Demonstração de um talento particular na prática do conhecimento. Técnica, destreza, Saber como fazer.<br/><br/>
+
+						8. Que habilidades são necessárias para realização desta atividade?<br/>
+						<textarea rows="4" cols="50" class="campo" id="i8" required></textarea> <br/><br/>
+
+						Atitude:  Refere-se à postura e ao modo como as pessoas agem e procedem em relação a fatos, objetos e outras pessoas de seu  ambiente. Comportamento.<br/> Querer fazer.  <br/><br/>
+
+						9. Que atitudes/comportamentos são necessárias para realização desta atividade?<br/>
+						<textarea rows="4" cols="50" class="campo" id="i9" required></textarea> <br/><br/>
+
+						10. O que dificulta a realização desta atividade?<br/>
+						<textarea rows="4" cols="50" class="campo" id="i10" required></textarea> <br/><br/>
+
+						11. O que você sugere para melhoria da realização desta atividade?<br/>
+						<textarea rows="4" cols="50" class="campo" id="i11" required></textarea> <br/><br/>
+						
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoJ">
+				<form id="blocoJ">
+					<fieldset>
+						<legend>J. LEVANTAMENTO DE NECESSIDADES DE CAPACITAÇÃO</legend>
+						1. Quais capacitações você tem o interesse de fazer para aperfeiçoar a execução de seu trabalho?<br/>
+						<textarea rows="5" cols="50" class="campo" name="j1" id="51" required></textarea> <br/><br/>
+
+						2. Justificativa:<br/>
+						<textarea rows="5" cols="50" class="campo" name="j2" id="52" required></textarea> <br/><br/>
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoL">
+				<form id="blocoL">
+					<fieldset>
+						<legend>L.  INDICAÇÃO DE INSTRUTORES</legend>
+						<!--1. Você se considera capaz de ministrar algum<br/>
+						curso de capacitação?<br/>-->
+						<select id="l1" class="campo" hidden >
+							<option value ="0">0 NÃO</option>
+							<option value ="1">1 SIM</option>
+						</select>
+
+						<!--2. Que curso/disciplina<br/>-->
+						<input type ="text" class="campo" id = "l2" hidden/> <!--88 NA<br/><br/>-->
+
+						Você conhece alguém que considere capaz de ser instrutor externo ou interno e/ou Instituições (Pode indicar a si mesmo).<br/>
+						<select id="l3" class="campo" required>
+							<option value ="0">0 NÃO</option>
+							<option value ="1">1 SIM</option>
+						</select><br/><br/> 
+
+						Nome do indicado 1: <input type ="text" class="campo" id = "l4"/> 88 NA<br/><br/>
+
+						Curso/disciplina:<input type ="text" class="campo" id = "l5"/> 88 NA<br/><br/>
+
+						6.Local:<br/>
+						<select id="l6" class="campo">
+							<option value="1">1 Interno<br/></option>
+							<option value="2">2 Externo<br/></option>
+							<option value="88">3 88 NA<br/></option>
+						</select>
+						<br/>
+
+						Instituição:<input type ="text" class="campo" id = "l7" class="instituicao"/> 88 NA<br/><br/>
+						
+
+						
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<!--DIV com um bloco do questionário-->
+		<div class="slide">
+			<div id="blocoM">
+				<form id="blocoM">
+					<fieldset>
+						<legend>M. TRAJETÓRIA EDUCACIONAL</legend>
+						Curso Técnico: Curso desvinculado da educação normal.<br/>
+						Curso Profissionalizante:  Curso vinculado ao ensino médio, onde o certificado sai no mesmo documento da<br/>
+						conclusão do ensino médio.<br/>
+
+						1.Seu curso no Ensino Médio é:<br/>
+						<select id ="m1" class="campo" required onchange="trajetoriaEdu(this)">
+							<option value="21">Profissionalizante</option>
+							<option value="10">Formação Geral</option>
+							<option value="20">Ensino Técnico</option>
+							<option value="88">88. Não Fez / NA</option>
+						</select>
+						<br/><br/>
+						<div id='cursoMedio' class="oculto">
+							2.Qual Curso: <input type ="text" class="campo" id = "m2" /><br/><br/>
+							  
+							3.Ano de Conclusão:<input type ="text" class="campo" id = "m3"/><br/>
+							55 Ainda está Cursando<br/>
+							66 Interrompeu<br/>
+							88 Não Fez / NA<br/>
+							77 NS<br/><br/>
+
+							4.A instituição é:<br/>
+							<select id ="m4" class="campo" >
+								<option value="1">Pública </option>
+								<option value="2">Privada</option>
+							</select>
+							<br/><br/>
+
+							5.Foi financiado pela UFRRJ:<br/>
+							<select id ="m5" class="campo">
+								<option value ="0">0 NÃO</option>
+								<option value ="1">1 SIM</option>
+							</select><br/><br/>
+						</div>
+						<div id ='cursoTec' class="oculto">
+							6.Curso Técnico (1):<br/>
+							<input type ="text" class="campo" id = "m6"/><br/><br/>
+
+							7. Qual Curso: <input type ="text" class="campo" id = "m7"/><br/><br/>
+							  
+							8.Ano de Conclusão:<input type ="text" class="campo" id = "m8"/><br/>
+							55 Ainda está Cursando<br/>
+							66 Interrompeu<br/>
+							88 Não Fez / NA<br/>
+							77 NS<br/><br/>
+
+							9.A instituição é:<br/>
+							<select id ="m9" class="campo">
+								<option value="1">Pública </option>
+								<option value="2">Privada</option>
+							</select>
+							<br/><br/>
+
+							10. Foi financiado pela UFRRJ:<br/>
+							<select id ="m10" class="campo">
+								<option value ="0">0 NÃO</option>
+								<option value ="1">1 SIM</option>
+							</select><br/><br/>
+						</div>
+						
+						n.6. Horário de término da entrevista:
+						<input type ="text" id = "n6" class="campo" required/><br/><br/>
+
+						Observações: <br/> 
+						<textarea rows="20" cols="50" class="campo" name="o1" id="53" required></textarea> <br/><br/>
+
+						<input type="button" id="validar" value="VALIDAR" onclick="validarForm(this.form)">
+
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+		<input type="button" id="gravar" class="gravar" value="GRAVAR DADOS" onclick="gravarDados()" disabled>
+
+	</div>
+</body>
+</html>

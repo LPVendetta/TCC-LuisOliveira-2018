@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Importação de Dados</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="scripts/mysql.js"></script>
+	<script type="text/javascript" src="scripts/importacaoCSV.js"></script>
+
+	<script type="text/javascript">
+		function teste(){
+		var crypto = require('crypto');
+		var encode = require("hashcode").hashCode;
+		var pwd = "UFRRJ"
+		var pwd2 = "UFRRJ2"
+		
+		var hash = crypto.createHash('sha512').update(pwd).digest('hex');
+		hash = Math.abs(encode().value(hash));
+
+		var hash2 = crypto.createHash('sha512').update(pwd2).digest('hex');
+		hash2 = Math.abs(encode().value(hash2));
+		
+		console.log("::"+hash+"::"+hash2);
+	}
+	</script>
+	
+</head>
+<body>
+<div id="cabecalho">
+	<h1> IMPORTAÇÃO DE DADOS</h1>
+</div>
+<div id="box">
+	<label for="escolher-arquivo" style="font-size: 20px;"> Escolha o arquivo com os dados: </label>
+	<br>
+	<form id="escolher-arquivo">
+		<br>
+		<input type="file" id="csv-file" class="horizontal" name="file" onchange="leituraCSV()">
+		<img id="spinner" src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif">
+		<input type="button" id ="botao-voltar" class="horizontal" onclick="window.history.back(-1);" value="VOLTAR" />
+		<!--<input type="button" id ="botao-voltar" class="horizontal" onclick="location.href='index.html';" value="VOLTAR" />-->
+		<br><br><br>
+	</form>
+	<div id="tabela" class="center">
+	</div>
+	
+</div>
+</body>
+</html>
